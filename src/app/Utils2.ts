@@ -6,11 +6,14 @@ export class PasswordVerifier {
         if(password.length<8){
             throw Error('password should be larger than 8 characters')
         }
-        if(password.toLocaleLowerCase()==password)
+        if(password.toLowerCase()==password)
         {
             throw Error('password should have at least one uppercase letter')
         }
-        throw Error('password should have at least one lowercase letter')
+        if(password.toUpperCase() == password){
+            throw Error('password should have at least one lowercase letter')
+        }
+        throw Error('password contain at least one number')
 
     }
 }

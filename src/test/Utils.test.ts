@@ -164,6 +164,9 @@ describe('Password verification',()=>{
     it('password should have at least one lowercase letter',()=>{
         expect(()=> passwordVerifier.verify("ABCDEFGHJIKL")).toThrow(Error('password should have at least one lowercase letter'))
     })
+    it('password contain at least one number',()=>{
+        expect(()=> passwordVerifier.verify("Abcdefghijkl")).toThrow(Error('password contain at least one number'))
+    })
 
 
 })
