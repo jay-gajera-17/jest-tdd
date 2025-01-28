@@ -148,10 +148,14 @@ import { PasswordVerifier } from "../app/Utils2";
 
 
 describe('Password verification',()=>{
-    it('should throw the error',()=>{
-        const passwordVerifier = new PasswordVerifier()
+    const passwordVerifier = new PasswordVerifier()
+    it('password should not be null',()=>{
         expect(()=>{
             passwordVerifier.verify(null)
-        }).toThrow('password should not be null');
+        }).toThrow(Error('password should not be null'));
+    })
+
+    it('password should be larger than 8 characters',()=>{
+        expect(()=> passwordVerifier.verify("abcde")).toThrow(Error('password should be larger than 8 characters'))
     })
 })
