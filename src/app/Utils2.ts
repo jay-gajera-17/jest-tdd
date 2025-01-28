@@ -13,7 +13,10 @@ export class PasswordVerifier {
         if(password.toUpperCase() == password){
             throw Error('password should have at least one lowercase letter')
         }
-        throw Error('password contain at least one number')
+        if(password.split("").every(char => isNaN(Number(char))))
+        {
+            throw Error('password contain at least one number');
+        }
 
     }
 }

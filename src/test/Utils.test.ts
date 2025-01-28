@@ -167,6 +167,9 @@ describe('Password verification',()=>{
     it('password contain at least one number',()=>{
         expect(()=> passwordVerifier.verify("Abcdefghijkl")).toThrow(Error('password contain at least one number'))
     })
+    it('password should be valid if passes all validations',()=>{
+       expect(()=>passwordVerifier.verify('Abcdefghi123')).not.toThrow(Error)
+    })
 
 
 })
