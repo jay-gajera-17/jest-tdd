@@ -158,4 +158,9 @@ describe('Password verification',()=>{
     it('password should be larger than 8 characters',()=>{
         expect(()=> passwordVerifier.verify("abcde")).toThrow(Error('password should be larger than 8 characters'))
     })
+    it('password should have at least one uppercase letter',()=>{
+        expect(()=> passwordVerifier.verify("abcdefghijkl")).toThrow(Error('password should have at least one uppercase letter'))
+    })
+
+
 })
