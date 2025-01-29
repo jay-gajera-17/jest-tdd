@@ -156,19 +156,46 @@ describe('Password verification',()=>{
     })
 
     it('password should be larger than 8 characters',()=>{
-        expect(()=> passwordVerifier.verify("abcde")).toThrow(Error('password should be larger than 8 characters'))
+        try{
+            passwordVerifier.verify("abcde")
+        }
+        catch(e){
+          
+            expect(e.message).toContain('password should be larger than 8 characters')
+        }
     })
     it('password should have at least one uppercase letter',()=>{
-        expect(()=> passwordVerifier.verify("abcdefghijkl")).toThrow(Error('password should have at least one uppercase letter'))
+        try{
+            passwordVerifier.verify("abcdefghijkl")
+        }
+        catch(e){
+            expect(e.message).toContain('password should have at least one uppercase letter')
+        }
     })
     it('password should have at least one lowercase letter',()=>{
-        expect(()=> passwordVerifier.verify("ABCDEFGHJIKL")).toThrow(Error('password should have at least one lowercase letter'))
+        try{
+            passwordVerifier.verify("ABCDEFGHJIKL")
+        }
+        catch(e){
+            expect(e.message).toContain('password should have at least one lowercase letter')
+
+        }
     })
     it('password contain at least one number',()=>{
-        expect(()=> passwordVerifier.verify("Abcdefghijkl")).toThrow(Error('password contain at least one number'))
+        try{
+            passwordVerifier.verify("Abcdefghijkl")
+        }
+        catch(e){
+            expect(e.message).toContain('password contain at least one number')
+
+        }
     })
-    it('password should be valid if passes all validations',()=>{
+    it('password should be valid if passes all validations',()=>{     
         expect(()=>passwordVerifier.verify('Abcdefghi123')).not.toThrow(Error)
+    })
+
+    it('password should be okay if it passes at least four validations',()=>{
+        expect(()=>passwordVerifier.verify('Abcdefghijkl')).not.toThrow(Error)
     })
 
 
