@@ -21,19 +21,19 @@ const largerThanEightChars = (password) => {
 }
 
 const atLeastOneUpperCase = (password) => {
-    if (password.toLowerCase() == password) {
+    if (!/[A-Z]/.test(password)) {
         throw Error('password should have at least one uppercase letter')
     }
 }
 
 const atLeastOneLowerCase = (password) => {
-    if (password.toUpperCase() == password) {
+    if (!/[a-z]/.test(password)) {
         throw Error('password should have at least one lowercase letter')
     }
 }
 
 const atLeastOneNumber = (password) => {
-    if (password.split("").every(char => isNaN(Number(char)))) {
+    if (!/\d/.test(password)) {
         throw Error('password contain at least one number');
     }
 }
