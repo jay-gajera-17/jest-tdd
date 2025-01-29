@@ -173,13 +173,8 @@ describe('Password verification',()=>{
         }
     })
     it('password should have at least one lowercase letter',()=>{
-        try{
-            passwordVerifier.verify("ABCDEFGHJIKL")
-        }
-        catch(e){
-            expect(e.message).toContain('password should have at least one lowercase letter')
+        expect(()=>passwordVerifier.verify('ABCDEFGHJIKL')).toThrow(Error('password should have at least one lowercase letter'));
 
-        }
     })
     it('password contain at least one number',()=>{
         try{
@@ -197,6 +192,7 @@ describe('Password verification',()=>{
     it('password should be okay if it passes at least four validations',()=>{
         expect(()=>passwordVerifier.verify('Abcdefghijkl')).not.toThrow(Error)
     })
+
 
 
 })

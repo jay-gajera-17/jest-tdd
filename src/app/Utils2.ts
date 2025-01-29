@@ -1,10 +1,10 @@
 export class PasswordVerifier {
     verify(password: string) {
         notNull(password)
+        atLeastOneLowerCase(password)
      const validations = [ 
         largerThanEightChars,
         atLeastOneUpperCase,
-        atLeastOneLowerCase,
         atLeastOneNumber,
      ]
      const errors = validations.map(validation => validation(password)).filter(error => error.length>0);
@@ -31,7 +31,9 @@ const atLeastOneUpperCase = (password) => {
 }
 
 const atLeastOneLowerCase = (password) => {
-    return !/[a-z]/.test(password)?"password should have at least one lowercase letter":""
+    if(!/[a-z]/.test(password)){
+        throw Error("password should have at least one lowercase letter")
+       }
 }
 
 const atLeastOneNumber = (password) => {
