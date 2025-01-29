@@ -1,41 +1,84 @@
-export class PasswordVerifier {
-    verify(password: string) {
+// export class PasswordVerifier {
+//     verify(password: string) {
+//         notNull(password)
+//         atLeastOneLowerCase(password)
+//      const validations = [ 
+//         largerThanEightChars,
+//         atLeastOneUpperCase,
+//         atLeastOneNumber,
+//      ]
+//      const errors = validations.map(validation => validation(password)).filter(error => error.length>0);
+//      if(errors.length>4){
+//         const msg = errors.join(',')
+//         throw Error(msg)
+//      }
+//     }
+// }
+
+// const notNull = (password) => {
+//     if (password == null) {
+//         throw Error('password should not be null')
+//     }
+// }
+
+// const largerThanEightChars = (password) => {
+//     return password.length < 9 ? "password should be larger than 8 characters" : ""
+// }
+
+// const atLeastOneUpperCase = (password) => {
+//    return  !/[A-Z]/.test(password)?"password should have at least one uppercase letter":""
+// }
+
+// const atLeastOneLowerCase = (password) => {
+//     if(!/[a-z]/.test(password)){
+//         throw Error("password should have at least one lowercase letter")
+//        }
+// }
+
+// const atLeastOneNumber = (password) => {
+//     return !/\d/.test(password)?"password contain at least one number":""
+// }
+
+export class PasswordVerifier{
+
+    verify(password:string){
         notNull(password)
-        atLeastOneLowerCase(password)
-     const validations = [ 
-        largerThanEightChars,
-        atLeastOneUpperCase,
-        atLeastOneNumber,
-     ]
-     const errors = validations.map(validation => validation(password)).filter(error => error.length>0);
-     if(errors.length>4){
-        const msg = errors.join(',')
-        throw Error(msg)
-     }
+     const validations = [
+       largerThanEightChars,
+       atLeastOneLowerCase,
+       atLeastOneUpperCase,
+       atLeastOneNumber,
+    ]   
+    const errors = validations.map(validation=> validation(password)).filter(error=>error.length>0)
+    
+    if(errors.length>4){
+        let msg = errors.join(',')
+        throw Error(msg);
+    }
+
+
     }
 }
 
-const notNull = (password) => {
-    if (password == null) {
+const notNull = (password)=>{
+    if(password == null){
         throw Error('password should not be null')
     }
 }
 
-const largerThanEightChars = (password) => {
-    return password.length < 9 ? "password should be larger than 8 characters" : ""
-   
+const largerThanEightChars = (password)=>{
+    return password.length<9?'password should be larger than 8 characters':""
 }
 
-const atLeastOneUpperCase = (password) => {
-   return  !/[A-Z]/.test(password)?"password should have at least one uppercase letter":""
+const atLeastOneUpperCase = (password)=>{
+    return !/[A-Z]/.test(password) ? 'password should have one uppercase letter at least':""
 }
 
-const atLeastOneLowerCase = (password) => {
-    if(!/[a-z]/.test(password)){
-        throw Error("password should have at least one lowercase letter")
-       }
+const atLeastOneLowerCase = (password)=>{
+    return !/[a-z]/.test(password)?'password should have one lowercase letter at least':''
 }
 
-const atLeastOneNumber = (password) => {
-    return !/\d/.test(password)?"password contain at least one number":""
+const atLeastOneNumber = (password)=>{
+    return !/\d/.test(password)?'password should have one number at least':''
+
 }
