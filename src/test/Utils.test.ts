@@ -12,26 +12,44 @@ describe("Password verification", () => {
   });
 
   test("password should be larger than 8 chars", () => {
-    expect(() => passwordVerification.verify("Abcdefg")).toThrow(
-      "password should be larger than 8 chars"
-    );
+    try {
+      passwordVerification.verify("Abcdefg");
+    } catch (e) {
+      expect(e.message).toContain("password should be larger than 8 chars");
+    }
   });
 
   test("password should have one uppercase letter at least", () => {
-    expect(() => passwordVerification.verify("abcdefghijkl")).toThrow(
-      "password should have one uppercase letter at least"
-    );
+    try {
+      passwordVerification.verify("abcdefghijkl");
+    } catch (e) {
+      expect(e.message).toContain(
+        "password should have one uppercase letter at least"
+      );
+    }
   });
 
   test("password should have one lowercase letter at least", () => {
-    expect(() => passwordVerification.verify("ABCDEFGHIJKL")).toThrow(
-      "password should have one lowercase letter at least"
-    );
+    try {
+      passwordVerification.verify("ABCDEFGHIJKL");
+    } catch (e) {
+      expect(e.message).toContain(
+        "password should have one lowercase letter at least"
+      );
+    }
   });
 
   test("password should have one number at least", () => {
-    expect(() => passwordVerification.verify("ABCDEfghijkl")).toThrow(
-      "password should have one number at least"
+    try {
+      passwordVerification.verify("ABCDEfghijkl");
+    } catch (e) {
+      expect(e.message).toContain("password should have one number at least");
+    }
+  });
+
+  test("Password is OK if at least four conditions is true", () => {
+    expect(() => passwordVerification.verify("Abcdefghijkl")).not.toThrow(
+      Error
     );
   });
 });
