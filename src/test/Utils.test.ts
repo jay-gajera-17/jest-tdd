@@ -16,4 +16,10 @@ describe("Password verification", () => {
       "password should be larger than 8 chars"
     );
   });
+
+  test("password should have one uppercase letter at least", () => {
+    expect(() => passwordVerification.verify("abcdefghijkl")).toThrow(
+      "password should have one uppercase letter at least"
+    );
+  });
 });
