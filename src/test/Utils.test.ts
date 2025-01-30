@@ -7,41 +7,28 @@ describe("Password verification", () => {
       Error("password should not be null")
     );
   });
-  it("password should be larger than 8 characters", () => {
-    try {
-      passwordVerifier.verify("Abcde");
-    } catch (e) {
-      expect(e.message).toContain(
-        "password should be larger than 8 characters"
-      );
-    }
+
+  it("Password should have  at lest 8 char", () => {
+    expect(() => passwordVerifier.verify("pass")).toThrow(
+      Error("password should be larger than 8 characters")
+    );
   });
-  it("password should have one uppercase letter at least", () => {
-    try {
-      passwordVerifier.verify("abcdefgqwertrs");
-    } catch (e) {
-      expect(e.message).toContain(
-        "password should have one uppercase letter at least"
-      );
-    }
+
+  it("Password should have  at lest one upper char", () => {
+    expect(() => passwordVerifier.verify("password12")).toThrow(
+      Error("password should have at least one uppercase letter")
+    );
   });
-  it("password should have one lowercase letter at least", () => {
-    try {
-      passwordVerifier.verify("ABCDEFHIJKL");
-    } catch (e) {
-      expect(e.message).toContain(
-        "password should have one lowercase letter at least"
-      );
-    }
+
+  it("Password should have  at lest one lowercase char", () => {
+    expect(() => passwordVerifier.verify("PASSWORD12")).toThrow(
+      Error("password should have at least one lowercase letter")
+    );
   });
-  it("password should have one number at least", () => {
-    try {
-      passwordVerifier.verify("ABCDEFGHijkl");
-    } catch (e) {
-      expect(e.message).toContain("password should have one number at least");
-    }
-  });
-  it("Password is OK if at least four of conditions is true", () => {
-    expect(() => passwordVerifier.verify("Abcdefghijkl")).not.toThrow(Error);
+
+  it("Password should have  at lest one digit", () => {
+    expect(() => passwordVerifier.verify("Codecovegare")).toThrow(
+      Error("password should have at least one digit")
+    );
   });
 });
