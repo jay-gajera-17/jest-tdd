@@ -12,6 +12,9 @@ export class PasswordVerification {
     if (!/[A-Z]/.test(password)) {
       throw Error("password should have one uppercase letter at least");
     }
-    throw Error("password should have one lowercase letter at least");
+    if (!/[a-z]/.test(password)) {
+      throw Error("password should have one lowercase letter at least");
+    }
+    throw Error("password should have one number at least");
   }
 }

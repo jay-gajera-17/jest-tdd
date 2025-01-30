@@ -28,4 +28,10 @@ describe("Password verification", () => {
       "password should have one lowercase letter at least"
     );
   });
+
+  test("password should have one number at least", () => {
+    expect(() => passwordVerification.verify("ABCDEfghijkl")).toThrow(
+      "password should have one number at least"
+    );
+  });
 });
