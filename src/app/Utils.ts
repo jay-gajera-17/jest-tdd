@@ -9,6 +9,9 @@ export class PasswordVerification {
       throw Error("password should be larger than 8 chars");
     }
 
-    throw Error("password should have one uppercase letter at least");
+    if (!/[A-Z]/.test(password)) {
+      throw Error("password should have one uppercase letter at least");
+    }
+    throw Error("password should have one lowercase letter at least");
   }
 }
